@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { useEffect, useState } from 'react';
+import SourceContext from './Context/SourceContext';
+import {
+  Route,
+  Routes
+} from "react-router-dom";
+import Sensor from './Pages/Sensor';
+import Table from './Pages/Table';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SourceContext>
+      <Routes>
+        <Route path="" element={<Sensor />}>
+        </Route>
+        <Route path="table" element={<Table />}>
+        </Route>
+        {/* <Route path="*" element={ErrorPage404} /> */}
+      </Routes>
+    </SourceContext>
   );
 }
 
