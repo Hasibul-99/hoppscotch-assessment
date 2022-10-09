@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from 'react'
 import Header from '../Components/Header';
 import { sensorTableContext } from "../Context/SourceContext";
-
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -37,48 +36,33 @@ export const options = {
     },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: [], //labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-            label: 'Dataset 2',
-            data: [],//labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-    ],
-};
 export default function Sensor() {
     const { sensor } = useContext(sensorTableContext);
-    // {"sensor_data":{"air_temperature":76,"humidity":93,"light_intensity":44}}
+    const labels = sensor.map((item, idx) => idx);
 
-    console.log("table", sensor);
     const data = {
         labels,
         datasets: [
             {
                 label: 'Air Temperature',
-                data: sensor.map(item => item.air_temperature), //labels.map(() => faker.dataty[], pe.number({ min: -1000, max: 1000 })),
+                data: sensor.map(item => item.air_temperature),
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
             {
-                label: 'Dataset 2',
-                data: [],//labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+                label: 'Humidity',
+                data: sensor.map(item => item.humidity),
                 borderColor: 'rgb(53, 162, 235)',
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
             },
+            {
+                label: 'Light Intensity',
+                data: sensor.map(item => item.light_intensity),
+                borderColor: '#5AD8A6',
+                backgroundColor: '#5AD8A6',
+            },
         ],
-    }
-
+    };
     return (
         <Fragment>
             <Header />

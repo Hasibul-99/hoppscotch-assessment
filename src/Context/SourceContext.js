@@ -9,10 +9,6 @@ const SourceContext = props => {
   useEffect(() => {
     let source = new EventSource("https://hopp-frontend-api.herokuapp.com/stream");
 
-    // source.onopen = function () {
-    //   console.log("Sse connection opened");
-    // };
-
     source.onerror = function () {
       console.log("error occured");
       source.close();
@@ -31,7 +27,7 @@ const SourceContext = props => {
     source.addEventListener("sensor", function (e) {
       let item = JSON.parse(e.data);
       if (item.sensor_data) {
-        sensor.unshift(item.sensor_data);
+        sensor.push(item.sensor_data);
         setSensor([...sensor]);
       }
     })
