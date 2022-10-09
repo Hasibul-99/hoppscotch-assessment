@@ -1,38 +1,38 @@
-import React, { Fragment } from 'react'
-import Header from '../Components/Header'
+import React, { Fragment, useContext } from 'react'
+import Header from '../Components/Header';
+import { sensorTableContext } from "../Context/SourceContext";
 
 export default function Table() {
+    const { table } = useContext(sensorTableContext);
+
+    console.log("table", table);
+
     return (
         <Fragment>
             <Header></Header>
-            <div>
+            <div className='container'>
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Email</th>
+                            <th scope="col">Customer City</th>
+                            <th scope="col">Customer Purchase Amount</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colSpan={2}>Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {
+                            table?.length ? <>
+                                {
+                                    table.map((item, idx) => <tr key={idx}>
+                                        <th scope="row">{item.customer_name}</th>
+                                        <td>{item.customer_email}</td>
+                                        <td>{item.customer_city}</td>
+                                        <td>{item.customer_purchase_amount}</td>
+                                    </tr>)
+                                }
+                            </> : ''
+                        }
                     </tbody>
                 </table>
             </div>
