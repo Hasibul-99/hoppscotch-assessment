@@ -14,7 +14,9 @@ function App() {
         </Route>
         <Route path="table" element={<Table />}>
         </Route>
-        {/* <Route path="*" element={ErrorPage404} /> */}
+        <Route path="*" element={<div className='text-center card'>
+            <div className='card-body'>404</div>
+          </div>} />
       </Routes>
     </SourceContext>
   );
