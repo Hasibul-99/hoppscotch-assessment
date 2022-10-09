@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react'
-
 export const sensorTableContext = createContext();
 
 const SourceContext = props => {

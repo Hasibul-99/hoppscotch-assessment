@@ -5,8 +5,6 @@ import { sensorTableContext } from "../Context/SourceContext";
 export default function Table() {
     const { table } = useContext(sensorTableContext);
 
-    console.log("table", table);
-
     return (
         <Fragment>
             <Header></Header>
